@@ -1,9 +1,61 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="py-5 text-center">
-  <h1 class="display-5 fw-bold">Footprint</h1>
-  <p class="lead">Leave your mark. Log your runs, join challenges, and climb the leaderboard.</p>
-  <p class="text-muted">Project setup is working. Features arrive sprint by sprint.</p>
-</div>
+{% if user.is_authenticated %}
+  {# Logged in: greet the user and show quick links #}
+  <h1 class="mb-1">Welcome back, {{ user.username }}!</h1>
+  <p class="text-muted">Role: {{ user.get_role_display }}</p>
+
+  <div class="row g-3 mt-2">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">My profile</h5>
+          <p class="card-text">See and edit your account details.</p>
+          <a class="btn btn-primary" href="{% url 'profile' %}">Go to profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">My runs</h5>
+          <p class="card-text">Log and track your runs.</p>
+          <span class="badge text-bg-secondary">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Challenges</h5>
+          <p class="card-text">Join challenges and climb the leaderboard.</p>
+          <span class="badge text-bg-secondary">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    {% if user.role == 'admin' or user.is_superuser %}
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Manage users</h5>
+            <p class="card-text">See all users and change their roles.</p>
+            <a class="btn btn-primary" href="{% url 'user_list' %}">Manage users</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% else %}
+  {# Logged out: explain Footprint and point to sign up / log in #}
+  <div class="py-5 text-center">
+    <h1 class="display-5 fw-bold">Leave your mark.</h1>
+    <p class="lead">Footprint is a social running app. Log your runs, join challenges, and climb the leaderboard.</p>
+    <a class="btn btn-primary btn-lg me-2" href="{% url 'signup' %}">Sign up</a>
+    <a class="btn btn-outline-secondary btn-lg" href="{% url 'login' %}">Log in</a>
+  </div>
+{% endif %}
 {% endblock %}

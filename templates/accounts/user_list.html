@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage users · Footprint{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Manage users</h2>
+
+<table class="table align-middle">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Joined</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for member in users %}
+      <tr>
+        <td>{{ member.username }}</td>
+        <td>{{ member.email }}</td>
+        <td>{{ member.date_joined|date:"M j, Y" }}</td>
+        <td>
+          {% if member == user %}
+            {# Admins can't change their own role (they could lock themselves out) #}
+            {{ member.get_role_display }} <span class="text-muted">(you)</span>
+          {% else %}
+            <form method="POST" action="{% url 'change_role' member.id %}" class="d-flex gap-2">
+              {% csrf_token %}
+              <select class="form-select form-select-sm" name="role">
+                {% for value, label in roles %}
+                  <option value="{{ value }}" {% if member.role == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+              <button class="btn btn-primary btn-sm" type="submit">Save</button>
+            </form>
+          {% endif %}
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="4">No users yet.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
