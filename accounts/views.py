@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
@@ -129,3 +129,16 @@ def change_role(request, user_id):
             member.save()
 
     return redirect('user_list')
+
+
+@login_required
+def delete_account(request):
+    # GET: show a "are you sure?" page
+    # POST: log the user out first, then delete their account
+    if request.method == 'POST':
+        user = request.user
+        logout(request)
+        user.delete()
+        return redirect('home')
+
+    return render(request, 'accounts/delete_account.html')
