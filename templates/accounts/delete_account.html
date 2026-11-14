@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete account · Footprint{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <h2 class="mb-3">Delete your account?</h2>
+    <div class="alert alert-danger">
+      This permanently deletes your account and can't be undone.
+    </div>
+
+    <form method="POST">
+      {% csrf_token %}
+      <button class="btn btn-danger" type="submit">Yes, delete my account</button>
+      <a class="btn btn-outline-secondary" href="{% url 'profile' %}">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
