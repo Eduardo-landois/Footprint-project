@@ -1,0 +1,17 @@
+As Max, I want to be able to log and edit runs even after they have been posted, so that typos, misinputs and incorrect logs can be corrected.
+
+As Sara, I would like to publish routes to the public, so that it can be rated and reviewed by fellow runners. 
+
+As Jason, I would like to host events on the app, so that there can be community driven events for GPS art.
+
+As Melinda, I would like easy access to review, edit and delete posts made by users, so that Admin moderation can more efficiently moderate inappropriate and malicious posts.
+
+As John, I would like to edit permissions of the app and have privacy settings, so that it does not always have access to my location and maintains my privacy.
+
+As Randy, I want to be able to download GPX files, so that edits can be made for easy upload.
+
+As Michael, I want to be able to follow certain popular creators, so that I can be caught up on their work and be notified on their published routes.
+
+As Fabian, I would like to have a separate tab for territory capture, so that factions and territory can be quickly accessed.
+
+As Jose, I would like the option to set a region on your profile, so that you are grouped with nearby users with the same language and location.

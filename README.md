@@ -16,7 +16,7 @@ Ryan De La Garza<br/><br/>
 **• Social feed:** friends' runs, kudos, and comments  
 **• Stretch goals:** GPX upload with route maps, territory capture, GPS art contests  
 
-**Tech stack:** Python 3.12+, Django 5.2, Bootstrap 5, SQLite <br/><br/>
+**Tech stack:** Python 3.12+, Django 5.2 - 6.1, Bootstrap 5, SQLite <br/><br/>
 
 
 ## Getting started
@@ -32,7 +32,7 @@ python manage.py createsuperuser
 python manage.py runserver
 `````````
 
-Open http://localhost:8000/  the browser (admin panel at `/admin`).
+Open http://localhost:8000/ in the browser (admin panel at `/admin`).
 
 > The project uses a custom `User` model (`accounts.User`). Use `get_user_model()` instead of Django's default `User`.
 > 
@@ -45,7 +45,7 @@ Open http://localhost:8000/  the browser (admin panel at `/admin`).
 • Before a PR: merge the latest `main`, make sure the tests pass, and commit any new migrations.  <br/><br/>
 
 
-## Spirit plan
+## Sprint plan
 | Sprint | Goal |  
 |---|---|
 | 1 | Setup, custom user model, login/logout |  
@@ -54,4 +54,9 @@ Open http://localhost:8000/  the browser (admin panel at `/admin`).
 | 4 | Leaderboards |  
 | 5 | Social feed, kudos, comments |
 | 6 | Testing, user manual, final demo | 
+
+## User Stories and Prototype
+- [User Stories](documents/Footprint-User-Stories.txt)
+- [Prototype](documents/Footprint-MVP-Prototypes.pptx)
+
 
