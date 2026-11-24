@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Log a run · Footprint{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="mb-3">Log a run</h2>
+
+    {% if errors %}
+      <div class="alert alert-danger">
+        <ul class="mb-0">
+          {% for error in errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <label class="form-label">Title (optional):</label>
+      <input class="form-control" type="text" name="title" value="{{ title }}" placeholder="Morning run">
+
+      <label class="form-label mt-3">Date:</label>
+      <input class="form-control" type="date" name="date" value="{{ date }}" required>
+
+      <label class="form-label mt-3">Distance (miles):</label>
+      <input class="form-control" type="number" name="distance" value="{{ distance }}" step="0.01" min="0.01" required>
+
+      <label class="form-label mt-3">Time:</label>
+      <div class="row g-2">
+        <div class="col">
+          <input class="form-control" type="number" name="hours" value="{{ hours }}" min="0">
+          <div class="form-text">Hours</div>
+        </div>
+        <div class="col">
+          <input class="form-control" type="number" name="minutes" value="{{ minutes }}" min="0" max="59">
+          <div class="form-text">Minutes</div>
+        </div>
+        <div class="col">
+          <input class="form-control" type="number" name="seconds" value="{{ seconds }}" min="0" max="59">
+          <div class="form-text">Seconds</div>
+        </div>
+      </div>
+
+      <label class="form-label mt-3">Notes (optional):</label>
+      <textarea class="form-control" name="notes" rows="3">{{ notes }}</textarea>
+
+      <button class="btn btn-primary mt-3" type="submit">Save run</button>
+      <a class="btn btn-outline-secondary mt-3" href="{% url 'run_list' %}">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
