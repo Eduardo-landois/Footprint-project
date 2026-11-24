@@ -10,4 +10,6 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     # Django's built-in login/logout pages
     path("accounts/", include("django.contrib.auth.urls")),
+    # Log, list, edit and delete runs
+    path("runs/", include("activities.urls")),
 ]
